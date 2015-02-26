@@ -1,4 +1,5 @@
 export PATH="~/bin:$PATH"
+PS1="$PS1"'$([ -n "$TMUX" ] && tmux setenv TMUXPWD_$(tmux display -p "#D" | tr -d %) "$PWD")'
 # ~/.bashrc: executed by bash(1) for non-login shells.
 # grep
 alias grep='grep --color=always'
@@ -17,14 +18,6 @@ alias kstatics='/etc/kelu/keluStatics.sh'
 alias kreal='/etc/kelu/keluReal.sh'
 alias iftop='sudo /usr/local/sbin/iftop'
 
-cdl() {
-            cd "${1}";
-            pwd;
-            ls -G;
-        }
-alias cd=cdl
-alias cdh='cd $HOME'
-alias cdkeluMacKit='cd $HOME/Workspace/KeluMacKit'
 alias sour='source ~/.bashrc'
 
 tn()
@@ -39,5 +32,3 @@ tn()
 alias tll='tmux ls'
 alias tt='tmux attach -t kelu'
 alias tk='tmux kill-session -t'
-
-PS1="$PS1"'$([ -n "$TMUX" ] && tmux setenv TMUXPWD_$(tmux display -p "#D" | tr -d %) "$PWD")'
