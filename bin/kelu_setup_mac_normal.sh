@@ -2,6 +2,7 @@
 set -e
 
 clear
+
 # Check if user is root
 if [ $(id -u) = "0" ]; then
   echo "Warning: You should not be a root to run this script if you are not a root"
@@ -51,6 +52,8 @@ source-file ~/.tmux.conf.local
 EOF
 cp $RESOURCE/tmux-powerline/default.sh $DOWNLOAD/tmux-powerline/theme/
 
+# hide iTerm2 icon in dock
+# /usr/libexec/PlistBuddy  -c "Add :LSUIElement bool true" /Applications/iTerm.app/Contents/Info.plist
 
 echo "-- wget htop iftop install -----------------------------------------------------"
 brew install wget htop iftop pstree
@@ -72,12 +75,9 @@ fi
 unzip Mou.zip
 mv Mou.app /Applications
 
-# echo "-- github install ------------------------------------------------------"
-# git config --global user.name "$GITHUBNAME"
-# git config --global user.email "$GITHUBEMAIL"
-
-cd $HOME/Downloads
-wget http://s1.music.126.net/download/osx/NeteaseMusic_1.1.1.320.dmg
+echo "-- github install ------------------------------------------------------"
+git config --global user.name "$GITHUBNAME"
+git config --global user.email "$GITHUBEMAIL"
 
 
 echo "Install KeluMacKit 0.1 completed! enjoy it."
@@ -86,12 +86,3 @@ echo "1. edit your iTerm2 profile, e.g. http://blog.kelu.org/mac/2015/01/25/iter
 echo "  It will help you a wonderful sightseeing of iTerms."
 echo "2. adding plugin: Supertab neocomplcache. seeing more about how to manage plugin by Bundle"
 echo "3. some useful tools, e.g. [github.app](https://mac.github.com) "
-
-# -- solarized dark or light -----------------------------------------------------
-
-#  You're almost done! Inside of the maximum-awesome-linux directory, do:
-#     rake install:solarized['dark']
-#          or
-#             rake install:solarized['light']
-#              You may need to close your terminal and re-open it for it to take effect.
-#              root@li740-56:~/KeluLinuxKit#
