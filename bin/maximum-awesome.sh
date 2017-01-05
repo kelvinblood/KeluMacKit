@@ -33,10 +33,11 @@ chsh -s /bin/zsh
 
 
 cat >> $HOME/.zshrc<< EOF
+export PATH=$HOME/bin:/usr/local/bin:/usr/local/sbin:$PATH
 alias vi='vim'
 alias dd='df -h'
 alias dudir='du --max-depth=1 -ah 2> /dev/null | sort -hr | head '
-alias p='netstat -antp'
+alias p='netstat'
 alias pp='pstree -a'
 alias rm0='find / -type f -name "0" | xargs -i  rm -fr "{}"'
 alias grepall='grep -D skip -nRe'
