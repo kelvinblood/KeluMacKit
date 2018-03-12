@@ -1,18 +1,41 @@
 #!/bin/bash
+. /etc/profile
 
-. install.sh
+
+if [ ! -e bin ]; then
+    cd ..;
+fi
+
+KELUMACKIT=$(pwd)
+NOWTIME=$(date)
+BASEPATH="$KELUMACKIT/Download"
+DOWNLOAD="$KELUMACKIT/Download"
+RESOURCE="$KELUMACKIT/Resource"
+USER=`whoami`
+
+if [ ! -e Download ]; then
+  mkdir Download
+fi
+
+echo "-- wget htop iftop install -----------------------------------------------------"
+ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+brew install wget htop iftop pstree
+
+echo "-- bashrc inputrc install ------------------------------------------------------"
+cp $RESOURCE/.inputrc $HOME
 
 cd $BASEPATH
 wget https://github.com/robbyrussell/oh-my-zsh/raw/master/tools/install.sh -O - | sh
 
+echo "download java first: https://www.java.com/en/download/mac_download.jsp"
 echo "-- maximum-awesome install -----------------------------------------------------"
 cd $BASEPATH
 if [ ! -e maximum-awesome ]; then
   git clone https://github.com/square/maximum-awesome.git
 fi
 cd maximum-awesome && rake
-cp $RESOURCE/maximum-awesome/tmux.conf $BASEPATH/maximum-awesome
-cp $RESOURCE/maximum-awesome/.tmux.conf.local $HOME
+sudo cp $RESOURCE/maximum-awesome/tmux.conf $BASEPATH/maximum-awesome
+sudo cp $RESOURCE/maximum-awesome/.tmux.conf.local $HOME
 
 echo "-- tmux-powerline install -----------------------------------------------------"
 cd $BASEPATH
@@ -49,3 +72,4 @@ alias tt='tmux attach -t'
 alias tk='tmux kill-session -t'
 EOF
 
+/usr/libexec/PlistBuddy  -c "Add :LSUIElement bool true" /Applications/iTerm.app/Contents/Info.plist
