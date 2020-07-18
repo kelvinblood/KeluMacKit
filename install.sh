@@ -1,11 +1,6 @@
 #!/bin/bash
 . /etc/profile
 
-
-if [ ! -e bin ]; then
-    cd ..;
-fi
-
 KELUMACKIT=$(pwd)
 NOWTIME=$(date)
 BASEPATH="$KELUMACKIT/Download"
@@ -13,9 +8,9 @@ DOWNLOAD="$KELUMACKIT/Download"
 RESOURCE="$KELUMACKIT/Resource"
 USER=`whoami`
 
-if [ ! -e Download ]; then
-  mkdir Download
-fi
+export ALL_PROXY=http://127.0.0.1:1087
+
+mkdir -p Download
 
 echo "-- wget htop iftop install -----------------------------------------------------"
 ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
@@ -53,23 +48,5 @@ cp $RESOURCE/tmux-powerline/default.sh $BASEPATH/tmux-powerline/themes/
 chsh -s /bin/zsh
 # hide iTerm2 icon in dock
 # /usr/libexec/PlistBuddy  -c "Add :LSUIElement bool true" /Applications/iTerm.app/Contents/Info.plist
-
-
-cat >> $HOME/.zshrc<< EOF
-export PATH=$HOME/bin:/usr/local/bin:/usr/local/sbin:$PATH
-alias vi='vim'
-alias dd='df -h'
-alias dudir='du --max-depth=1 -ah 2> /dev/null | sort -hr | head '
-alias p='netstat'
-alias pp='pstree -a'
-alias rm0='find / -type f -name "0" | xargs -i  rm -fr "{}"'
-alias grepall='grep -D skip -nRe'
-alias sour='source ~/.zshrc'
-
-alias tn='tmux new -s'
-alias tll='tmux ls'
-alias tt='tmux attach -t'
-alias tk='tmux kill-session -t'
-EOF
 
 /usr/libexec/PlistBuddy  -c "Add :LSUIElement bool true" /Applications/iTerm.app/Contents/Info.plist
