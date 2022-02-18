@@ -46,6 +46,7 @@ EOF
 cp $RESOURCE/tmux-powerline/default.sh $BASEPATH/tmux-powerline/themes/
 
 chsh -s /bin/zsh
+/bin/cat $RESOURCE/.zshrc >> ~/.zshrc
 # hide iTerm2 icon in dock
 # /usr/libexec/PlistBuddy  -c "Add :LSUIElement bool true" /Applications/iTerm.app/Contents/Info.plist
 
