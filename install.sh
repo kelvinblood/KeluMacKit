@@ -51,3 +51,6 @@ chsh -s /bin/zsh
 # /usr/libexec/PlistBuddy  -c "Add :LSUIElement bool true" /Applications/iTerm.app/Contents/Info.plist
 
 /usr/libexec/PlistBuddy  -c "Add :LSUIElement bool true" /Applications/iTerm.app/Contents/Info.plist
+
+brew install bat
+git config --global core.quotepath false # https://blog.kelu.org/tech/2020/03/02/git-commit-quotepath.html
